@@ -1,0 +1,66 @@
+.upload-file-manager-container:after
+	display block
+	content ''
+	clear both
+	zoom 1
+.upload-file-manager-file-wrapper
+	display inline-block
+	position relative
+	margin 10px
+	vertical-align middle
+.upload-file-manager-file-preview
+	width 100px
+	height 100px
+	background-position center
+	background-size 80%
+	background-repeat no-repeat
+	border 1px solid #F1F3F4
+	transition 0.3s
+	&:hover
+		border-color #E1E3E4
+.upload-file-manager-file-preview-image
+	display block
+	border none
+.upload-file-manager-file-preview-pdf
+	background-image url('../images/file_pdf.png')
+.upload-file-manager-file-preview-word
+	background-image url('../images/file_word.png')
+.upload-file-manager-file-preview-excel
+	background-image url('../images/file_excel.png')
+.upload-file-manager-file-preview-ppt
+	background-image url('../images/file_ppt.png')
+.upload-file-manager-file-preview-zip
+	background-image url('../images/file_zip.png')
+.upload-file-manager-file-preview-txt
+	background-image url('../images/file_txt.png')
+.upload-file-manager-file-preview-exe
+	background-image url('../images/file_exe.png')
+.upload-file-manager-file-preview-unknown
+	background-image url('../images/file_unknown.png')
+.upload-file-manager-file-name
+	margin-top 10px
+	height 20px
+	line-height @height
+	font-size 14px
+	text-align center
+	text-overflow ellipsis
+	white-space nowrap
+	overflow hidden
+.upload-file-manager-file-close
+	position absolute
+	right -10px
+	top -10px
+	width 20px
+	height 20px
+	background-color #FF0000
+	background-position center
+	background-size 60%
+	background-repeat no-repeat
+	background-image url('../images/remove.png')
+	border-radius 20px
+	cursor pointer
+	opacity 0.6
+	transition 0.3s
+	z-index 1
+	&:hover
+		opacity 1

@@ -1,7 +1,6 @@
 const path = require('path')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const webpackConfig = {
     entry: {
@@ -16,7 +15,8 @@ const webpackConfig = {
         minimize: false
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.m?js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
@@ -25,37 +25,23 @@ const webpackConfig = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    { loader: MiniCssExtractPlugin.loader },
-                    { loader: 'css-loader' },
-                    { loader: 'postcss-loader' }
-                ]
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'postcss-loader' }]
             },
             {
                 test: /\.styl$/,
-                use: [
-                    { loader: MiniCssExtractPlugin.loader },
-                    { loader: 'css-loader' },
-                    { loader: 'postcss-loader' },
-                    { loader: 'stylus-loader' }
-                ]
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'postcss-loader' }, { loader: 'stylus-loader' }]
             },
             {
                 test: /\.(gif|jpg|jpeg|png|svg|ttf)$/,
                 loader: 'url-loader',
                 options: {
-                    limit: 1024
+                    limit: 5000
                 }
             }
         ]
     },
     plugins: [
         new UglifyJSPlugin(),
-        new MiniCssExtractPlugin({
-            filename: '[name].bundle.css',
-            chunkFilename: '[id].css',
-            ignoreOrder: false, // Enable to remove warnings about conflicting order
-        }),
         new HtmlWebpackPlugin({
             title: 'es7-cli',
             template: 'index.html',

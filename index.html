@@ -1,21 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>
+            <%= htmlWebpackPlugin.options.title %>
+        </title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>
-        <%= htmlWebpackPlugin.options.title %>
-    </title>
-</head>
-
-<body>
-    <script type="text/javascript">
-        (function(undefined) {
-            // do something to test your plugin
-        })()
-    </script>
-</body>
-
+    <body>
+        <div id="fileContainer"></div>
+        <script type="text/javascript">
+            ;(function(undefined) {
+                window.uploadFileManager = new UploadFileManager('#fileContainer', {
+                    repeatEnable: true,
+                    limit: 99
+                })
+                uploadFileManager.onFileClick = function(url) {
+                    console.log('onFileClick url: ', url)
+                }
+                uploadFileManager.onFileRemove = function(url) {
+                    console.log('onFileRemove url: ', url)
+                }
+                uploadFileManager.onLimit = function() {
+                    console.log('onLimit')
+                }
+                uploadFileManager.addFile('https://static.styzy.cn/stranger/articleImage/17/15521393430565497.png')
+                uploadFileManager.addFile('https://static.styzy.cn/stranger/articleImage/17/15521393430565497.pdf', false)
+            })()
+        </script>
+        <style>
+            .upload-file-manager-file-wrapper {
+                width: 60px;
+            }
+            .upload-file-manager-file-preview {
+                width: 60px;
+                height: 60px;
+            }
+        </style>
+    </body>
 </html>

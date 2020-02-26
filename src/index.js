@@ -1,5 +1,6 @@
-import core from './core'
+import Manager from './Manager'
+import './assets/stylus/index.styl'
 
-export { core as name }
+export { Manager as UploadFileManager }
 
-export default core
+export default Manager
