@@ -134,6 +134,12 @@ class Manager {
     getFiles() {
         return this.fileList.map(file => file.url)
     }
+    cleanFiles() {
+        this.fileList.forEach(file => {
+            this.el.removeChild(file.el)
+            delete this.#files[file.id]
+        })
+    }
 }
 
 export default Manager
