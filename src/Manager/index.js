@@ -7,6 +7,7 @@ class Manager {
     #counter = 0
     #repeatEnable = false
     #limit = 0
+    #showName = true
     #onFileClick = null
     #onFileRemove = null
     #onLimit = null
@@ -70,9 +71,10 @@ class Manager {
         }
         this.el.className += ` ${CONSTANTS.CLASS_NAME.CONTAINER}`
         if (typeof options === 'object') {
-            let { repeatEnable = false, onFileClick, onFileRemove, onLimit, beforeFileRemove, limit = 0 } = options
+            let { repeatEnable = false, onFileClick, onFileRemove, onLimit, beforeFileRemove, limit = 0, showName = true } = options
             this.#repeatEnable = repeatEnable
             this.#limit = limit
+            this.#showName = showName
             this.onFileClick = onFileClick
             this.onFileRemove = onFileRemove
             this.onLimit = onLimit
@@ -107,7 +109,7 @@ class Manager {
             throw new Error('创建file失败：错误的url')
         }
         let id = this.#createId(),
-            file = new File({ id, url, removeEnable })
+            file = new File({ id, url, removeEnable, showName: this.#showName })
         this.#files[id] = file
 
         file.onclick = () => {
@@ -122,20 +124,20 @@ class Manager {
         if (!url || typeof url !== 'string') {
             throw new Error('删除file失败：错误的url')
         }
-        let fileList = this.fileList.filter(file => {
+        let fileList = this.fileList.filter((file) => {
             return file.url === url
         })
-        fileList.forEach(file => {
+        fileList.forEach((file) => {
             if (file.removeEnable || isForce) {
                 this.#removeFileById(file.id)
             }
         })
     }
     getFiles() {
-        return this.fileList.map(file => file.url)
+        return this.fileList.map((file) => file.url)
     }
     cleanFiles() {
-        this.fileList.forEach(file => {
+        this.fileList.forEach((file) => {
             this.el.removeChild(file.el)
             delete this.#files[file.id]
         })

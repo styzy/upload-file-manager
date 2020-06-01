@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const webpackConfig = {
     entry: {
-        'upload-file-manager': './src/index.js'
+        uploadFileManager: './src/index.js'
     },
     output: {
         libraryTarget: 'umd',

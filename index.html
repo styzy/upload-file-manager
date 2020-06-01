@@ -12,18 +12,19 @@
     <body>
         <div id="fileContainer"></div>
         <script type="text/javascript">
-            ;(function(undefined) {
+            ;(function (undefined) {
                 window.uploadFileManager = new UploadFileManager('#fileContainer', {
                     repeatEnable: true,
+                    showName: false,
                     limit: 99
                 })
-                uploadFileManager.onFileClick = function(url) {
+                uploadFileManager.onFileClick = function (url) {
                     console.log('onFileClick url: ', url)
                 }
-                uploadFileManager.onFileRemove = function(url) {
+                uploadFileManager.onFileRemove = function (url) {
                     console.log('onFileRemove url: ', url)
                 }
-                uploadFileManager.onLimit = function() {
+                uploadFileManager.onLimit = function () {
                     console.log('onLimit')
                 }
                 uploadFileManager.addFile('https://static.styzy.cn/stranger/articleImage/17/15521393430565497.png')

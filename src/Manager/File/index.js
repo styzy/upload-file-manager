@@ -5,6 +5,7 @@ class File {
     #url = ''
     #el = null
     #removeEnable
+    #showName
     onClick = null
     onClose = null
     get id() {
@@ -37,32 +38,35 @@ class File {
         let targetType = CONSTANTS.FILE_TYPE.UNKNOWN,
             typeSuffixMap = CONSTANTS.FILE_TYPE_SUFFIX_MAP
         for (const [type, suffixList] of typeSuffixMap) {
-            if (suffixList.some(suffix => suffix === this.suffix.toLowerCase())) {
+            if (suffixList.some((suffix) => suffix === this.suffix.toLowerCase())) {
                 targetType = type
                 break
             }
         }
         return targetType
     }
-    constructor({ id, url, removeEnable = true }) {
+    constructor({ id, url, removeEnable = true, showName = true }) {
         this.#id = id
         this.#url = url
         this.#removeEnable = removeEnable
+        this.#showName = showName
         this.#el = this.#createElement()
     }
     #createElement() {
         let el = document.createElement('div'),
-            el_preview = this.#createPreviewElement(),
-            el_name = document.createElement('div')
+            el_preview = this.#createPreviewElement()
 
         el.className = CONSTANTS.CLASS_NAME.FILE.WRAPPER
         el.title = this.name
 
-        el_name.className = CONSTANTS.CLASS_NAME.FILE.NAME
-        el_name.innerText = this.name
-
         el.appendChild(el_preview)
-        el.appendChild(el_name)
+
+        if (this.#showName) {
+            var el_name = document.createElement('div')
+            el_name.className = CONSTANTS.CLASS_NAME.FILE.NAME
+            el_name.innerText = this.name
+            el.appendChild(el_name)
+        }
 
         if (this.removeEnable) {
             let el_close = document.createElement('div')
