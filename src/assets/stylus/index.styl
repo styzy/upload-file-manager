@@ -6,10 +6,8 @@
 .upload-file-manager-file-wrapper
 	display inline-block
 	position relative
-	margin 10px
+	margin 10px 20px 10px 0
 	vertical-align middle
-	&:first-child
-		margin-left 0
 .upload-file-manager-file-preview
 	width 100px
 	height 100px
@@ -18,6 +16,7 @@
 	background-repeat no-repeat
 	border 1px solid #F1F3F4
 	transition 0.3s
+	box-sizing border-box
 	&:hover
 		border-color #E1E3E4
 .upload-file-manager-file-preview-image
@@ -42,6 +41,7 @@
 .upload-file-manager-file-name
 	margin-top 10px
 	height 20px
+	width 100px
 	line-height @height
 	font-size 14px
 	text-align center

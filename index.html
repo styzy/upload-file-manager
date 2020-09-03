@@ -4,9 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>
-            <%= htmlWebpackPlugin.options.title %>
-        </title>
+        <title><%= htmlWebpackPlugin.options.title %></title>
     </head>
 
     <body>
@@ -15,7 +13,7 @@
             ;(function (undefined) {
                 window.uploadFileManager = new UploadFileManager('#fileContainer', {
                     repeatEnable: true,
-                    showName: false,
+                    showName: true,
                     limit: 99
                 })
                 uploadFileManager.onFileClick = function (url) {
@@ -32,13 +30,13 @@
             })()
         </script>
         <style>
-            .upload-file-manager-file-wrapper {
-                width: 60px;
-            }
-            .upload-file-manager-file-preview {
+            /* .upload-file-manager-file-preview {
                 width: 60px;
                 height: 60px;
             }
+            .upload-file-manager-file-name {
+                width: 60px;
+            } */
         </style>
     </body>
 </html>
