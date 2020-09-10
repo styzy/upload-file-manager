@@ -120,6 +120,14 @@ class Manager {
         }
         this.el.appendChild(file.el)
     }
+    addFiles(urlList, removeEnable) {
+        if (!urlList || !(urlList instanceof Array)) {
+            throw new Error('批量创建file失败：错误的url数组')
+        }
+        urlList.forEach((url) => {
+            this.addFile(url, removeEnable)
+        })
+    }
     removeFile(url, isForce = false) {
         if (!url || typeof url !== 'string') {
             throw new Error('删除file失败：错误的url')

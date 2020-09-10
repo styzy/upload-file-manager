@@ -25,8 +25,9 @@
                 uploadFileManager.onLimit = function () {
                     console.log('onLimit')
                 }
-                uploadFileManager.addFile('https://static.styzy.cn/stranger/articleImage/17/15521393430565497.png')
-                uploadFileManager.addFile('https://static.styzy.cn/stranger/articleImage/17/15521393430565497.pdf', false)
+                // uploadFileManager.addFile('https://static.styzy.cn/stranger/articleImage/17/15521393430565497.png')
+                // uploadFileManager.addFile('https://static.styzy.cn/stranger/articleImage/17/15521393430565497.pdf', false)
+                uploadFileManager.addFiles(['https://static.styzy.cn/stranger/articleImage/17/15521393430565497.png', 'https://static.styzy.cn/stranger/articleImage/17/15521393430565497.pdf'], false)
             })()
         </script>
         <style>
