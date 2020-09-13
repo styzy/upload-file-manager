@@ -112,7 +112,7 @@ class Manager {
             file = new File({ id, url, removeEnable, showName: this.#showName })
         this.#files[id] = file
 
-        file.onclick = () => {
+        file.onClick = () => {
             this.onFileClick && this.onFileClick(file.url)
         }
         file.onClose = () => {
