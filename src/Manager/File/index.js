@@ -3,6 +3,7 @@ import CONSTANTS from '../../CONSTANTS'
 class File {
     #id = null
     #url = ''
+    #name = ''
     #el = null
     #removeEnable
     #showName
@@ -24,6 +25,8 @@ class File {
         return this.url.split('.')[this.url.split('.').length - 1] || ''
     }
     get name() {
+        if (this.#name) return this.#name
+
         let url = this.url,
             arr = url.split('/'),
             name = ''
@@ -45,9 +48,10 @@ class File {
         }
         return targetType
     }
-    constructor({ id, url, removeEnable = true, showName = true }) {
+    constructor({ id, url, name, removeEnable = true, showName = true }) {
         this.#id = id
         this.#url = url
+        this.#name = name
         this.#removeEnable = removeEnable
         this.#showName = showName
         this.#el = this.#createElement()

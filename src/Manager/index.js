@@ -2,6 +2,9 @@ import CONSTANTS from '../CONSTANTS'
 import File from './File'
 
 class Manager {
+    static get version() {
+        return CONSTANTS.VERSION
+    }
     #el
     #files = {}
     #counter = 0
@@ -100,16 +103,30 @@ class Manager {
         this.el.removeChild(file.el)
         delete this.#files[file.id]
     }
-    addFile(url, removeEnable) {
+    addFile(_file, removeEnable) {
         if (this.limit && this.fileList.length >= this.limit) {
             this.onLimit && this.onLimit()
             return
         }
-        if (!url || typeof url !== 'string') {
-            throw new Error('创建file失败：错误的url')
+
+        if (!_file || (typeof _file !== 'string' && typeof _file !== 'object')) {
+            throw new Error(`创建file失败:错误的file类型${typeof _file}`)
         }
+
+        if (typeof _file === 'string') {
+            _file = {
+                url: _file,
+                removeEnable: removeEnable
+            }
+        }
+
+        if (_file.removeEnable === undefined) {
+            _file.removeEnable = removeEnable
+        }
+
         let id = this.#createId(),
-            file = new File({ id, url, removeEnable, showName: this.#showName })
+            file = new File({ id, url: _file.url, name: _file.name, removeEnable: _file.removeEnable, showName: this.#showName })
+
         this.#files[id] = file
 
         file.onClick = () => {
@@ -120,12 +137,12 @@ class Manager {
         }
         this.el.appendChild(file.el)
     }
-    addFiles(urlList, removeEnable) {
-        if (!urlList || !(urlList instanceof Array)) {
+    addFiles(fileList, removeEnable) {
+        if (!fileList || !(fileList instanceof Array)) {
             throw new Error('批量创建file失败：错误的url数组')
         }
-        urlList.forEach((url) => {
-            this.addFile(url, removeEnable)
+        fileList.forEach((file) => {
+            this.addFile(file, removeEnable)
         })
     }
     removeFile(url, isForce = false) {

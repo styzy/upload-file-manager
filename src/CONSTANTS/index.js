@@ -1,3 +1,4 @@
+const VERSION = '1.0.0'
 const NAME_SPACE = `upload-file-manager`
 const FILE_TYPE = {
     IMAGE: `image`,
@@ -21,6 +22,7 @@ const FILE_TYPE_SUFFIX_MAP = new Map([
     [FILE_TYPE.EXE, [`exe`]]
 ])
 const CONSTANTS = {
+    VERSION,
     CLASS_NAME: {
         CONTAINER: `${NAME_SPACE}-container`,
         FILE: {

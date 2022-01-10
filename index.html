@@ -28,6 +28,15 @@
                 // uploadFileManager.addFile('https://static.styzy.cn/stranger/articleImage/17/15521393430565497.png')
                 // uploadFileManager.addFile('https://static.styzy.cn/stranger/articleImage/17/15521393430565497.pdf', false)
                 uploadFileManager.addFiles(['https://static.styzy.cn/stranger/articleImage/17/15521393430565497.png', 'https://static.styzy.cn/stranger/articleImage/17/15521393430565497.pdf'], false)
+                uploadFileManager.addFiles(
+                    [
+                        {
+                            url: 'https://static.styzy.cn/stranger/articleImage/17/15521393430565497.txt',
+                            name: '自定义文件名'
+                        }
+                    ],
+                    false
+                )
             })()
         </script>
         <style>
