@@ -1,4 +1,4 @@
-const VERSION = '1.0.0'
+const VERSION = '1.0.1'
 const NAME_SPACE = `upload-file-manager`
 const FILE_TYPE = {
     IMAGE: `image`,

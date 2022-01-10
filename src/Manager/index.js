@@ -103,25 +103,39 @@ class Manager {
         this.el.removeChild(file.el)
         delete this.#files[file.id]
     }
-    addFile(_file, removeEnable) {
+    addFile(originFile, removeEnable) {
         if (this.limit && this.fileList.length >= this.limit) {
             this.onLimit && this.onLimit()
             return
         }
 
-        if (!_file || (typeof _file !== 'string' && typeof _file !== 'object')) {
-            throw new Error(`创建file失败:错误的file类型${typeof _file}`)
+        if (!originFile || (typeof originFile !== 'string' && typeof originFile !== 'object')) {
+            throw new Error(`创建file失败:错误的file类型${typeof originFile}`)
         }
 
-        if (typeof _file === 'string') {
+        let _file
+
+        if (typeof originFile === 'object') {
+            _file = Object.assign({}, originFile)
+
+            if (_file.removeEnable === undefined) {
+                _file.removeEnable = removeEnable
+            }
+        }
+
+        if (typeof originFile === 'string') {
             _file = {
-                url: _file,
+                url: originFile,
                 removeEnable: removeEnable
             }
         }
 
-        if (_file.removeEnable === undefined) {
-            _file.removeEnable = removeEnable
+        if (!_file.url) {
+            throw new Error(`创建file失败:file的url不能为空`)
+        }
+
+        if (typeof _file.url !== 'string') {
+            throw new Error(`创建file失败:错误的file的url类型:${typeof _file.url}`)
         }
 
         let id = this.#createId(),
@@ -130,7 +144,7 @@ class Manager {
         this.#files[id] = file
 
         file.onClick = () => {
-            this.onFileClick && this.onFileClick(file.url)
+            this.onFileClick && this.onFileClick(originFile)
         }
         file.onClose = () => {
             this.#removeFileById(file.id)

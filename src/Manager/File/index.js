@@ -81,6 +81,11 @@ class File {
             })
             el.appendChild(el_close)
         }
+
+        el.addEventListener('click', () => {
+            this.onClick && this.onClick()
+        })
+
         return el
     }
     #createPreviewElement() {
@@ -93,10 +98,6 @@ class File {
             el = document.createElement('div')
             el.className = `${CONSTANTS.CLASS_NAME.FILE.PREVIEW.ORIGIN} ${CONSTANTS.CLASS_NAME.FILE.PREVIEW.ORIGIN}-${this.type}`
         }
-
-        el.addEventListener('click', () => {
-            this.onClick && this.onClick()
-        })
 
         return el
     }
